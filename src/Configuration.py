@@ -164,7 +164,17 @@ class Configuration:
     
     # Processes the MOUSEMOTION event
     def processMouseMotionEvent(self):
-        pass
+       if self.event.type == pygame.MOUSEMOTION:
+           if pygame.mouse.get_pressed()[0]==1:
+               gl.glRotate(self.event.rel[1],-1,0,0)
+               gl.glRotate(self.event.rel[0],0,0,-1)
+           else:
+               gl.glRotate(0,0,0,0)
+           if pygame.mouse.get_pressed()[2]==1:
+               gl.glTranslate(0.1*self.event.rel[0],0,0.1*self.event.rel[1])
+           else:
+               gl.glTranslate(0,0,0)
+               
          
     # Displays on screen and processes events    
     def display(self): 
